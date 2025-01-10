@@ -56,19 +56,20 @@
 
 
         var generateNoise = function () {
-            var canvas = doc.createElement('canvas');
-            var ctx = canvas.getContext('2d');
-            canvas.width = options.patternWidth;
-            canvas.height = options.patternHeight;
-            for (var w = 0; w < options.patternWidth; w += options.grainDensity) {
-                for (var h = 0; h < options.patternHeight; h += options.grainDensity) {
-                    var rgb = Math.random() * 256 | 0;
-                    ctx.fillStyle = 'rgba(' + [rgb, rgb, rgb, options.grainOpacity].join() + ')';
-                    ctx.fillRect(w, h, options.grainWidth, options.grainHeight);
-                }
-            }
-            return canvas.toDataURL('image/png');
-        };
+    var canvas = doc.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.width = options.patternWidth;
+    canvas.height = options.patternHeight;
+    for (var w = 0; w < options.patternWidth; w += options.grainDensity) {
+        for (var h = 0; h < options.patternHeight; h += options.grainDensity) {
+            var rgb = Math.random() * 100 | 0; // Тёмные оттенки от 0 до 100
+            ctx.fillStyle = 'rgb(' + [rgb, rgb, rgb].join() + ')'; // Только тёмные пиксели
+            ctx.fillRect(w, h, options.grainWidth, options.grainHeight);
+        }
+    }
+    return canvas.toDataURL('image/png');
+};
+
 
         function addCSSRule(sheet, selector, rules, index) {
             var ins = '';
